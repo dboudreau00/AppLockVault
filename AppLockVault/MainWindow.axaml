@@ -1,0 +1,99 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="AppLockVault.MainWindow"
+        Title="AppLock Vault"
+        Width="460" Height="620"
+        MinWidth="430" MinHeight="600"
+        WindowStartupLocation="CenterScreen">
+
+  <Window.Background>
+    <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+      <GradientStop Color="#0C0D12" Offset="0" />
+      <GradientStop Color="#0A0B0F" Offset="1" />
+    </LinearGradientBrush>
+  </Window.Background>
+
+  <Grid RowDefinitions="Auto,*,Auto" Margin="24,22,24,20">
+
+    <!-- ===== Header ===== -->
+    <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="14" Margin="2,2,2,20">
+      <Border Width="46" Height="46" CornerRadius="13" VerticalAlignment="Center">
+        <Border.Background>
+          <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+            <GradientStop Color="#8B6DFF" Offset="0" />
+            <GradientStop Color="#5B4FE0" Offset="1" />
+          </LinearGradientBrush>
+        </Border.Background>
+        <PathIcon Width="21" Height="21" Foreground="White"
+                  Data="M12,1.8 C9.24,1.8 7,4.04 7,6.8 L7,8.4 L6.2,8.4 C5.1,8.4 4.2,9.3 4.2,10.4 L4.2,20 C4.2,21.1 5.1,22 6.2,22 L17.8,22 C18.9,22 19.8,21.1 19.8,20 L19.8,10.4 C19.8,9.3 18.9,8.4 17.8,8.4 L17,8.4 L17,6.8 C17,4.04 14.76,1.8 12,1.8 Z M9,8.4 L9,6.8 C9,5.14 10.34,3.8 12,3.8 C13.66,3.8 15,5.14 15,6.8 L15,8.4 Z" />
+      </Border>
+      <StackPanel VerticalAlignment="Center" Spacing="3">
+        <TextBlock Classes="h1" Text="AppLock Vault" />
+        <TextBlock x:Name="StatusText" Classes="subtle" Text="Loading…" />
+      </StackPanel>
+    </StackPanel>
+
+    <!-- ===== Card ===== -->
+    <Border Grid.Row="1" Classes="card">
+      <Grid>
+
+        <!-- SETUP -->
+        <StackPanel x:Name="SetupPanel" Spacing="14" IsVisible="False">
+          <StackPanel Spacing="6">
+            <TextBlock Classes="label" Text="Master password" />
+            <TextBox x:Name="SetupMaster" PasswordChar="●" Watermark="At least 8 characters" />
+          </StackPanel>
+          <StackPanel Spacing="6">
+            <TextBlock Classes="label" Text="Confirm master password" />
+            <TextBox x:Name="SetupMasterConfirm" PasswordChar="●" Watermark="Re-enter master password" />
+          </StackPanel>
+          <StackPanel Spacing="6">
+            <TextBlock Classes="label" Text="Duress password  ·  triggers secure wipe" />
+            <TextBox x:Name="SetupDuress" PasswordChar="●" Watermark="Different from master" />
+          </StackPanel>
+          <Grid ColumnDefinitions="*,14,*">
+            <StackPanel Grid.Column="0" Spacing="6">
+              <TextBlock Classes="label" Text="Auto-lock (seconds)" />
+              <TextBox x:Name="SetupAutoLock" Text="300" />
+            </StackPanel>
+            <StackPanel Grid.Column="2" Spacing="6">
+              <TextBlock Classes="label" Text="Duress entries to wipe" />
+              <TextBox x:Name="SetupDuressCount" Text="1" />
+            </StackPanel>
+          </Grid>
+          <Button Classes="primary" Content="Create vault" Click="OnCreateVault" Margin="0,4,0,0" />
+        </StackPanel>
+
+        <!-- LOCKED -->
+        <StackPanel x:Name="LockedPanel" Spacing="12" IsVisible="False">
+          <TextBlock Classes="label" Text="Enter your password to unlock" />
+          <TextBox x:Name="UnlockPassword" PasswordChar="●" Watermark="Password" KeyDown="OnUnlockKeyDown" />
+          <Button Classes="primary" Content="Unlock" Click="OnUnlock" />
+          <TextBlock x:Name="UnlockError" Classes="error" Text="" />
+        </StackPanel>
+
+        <!-- UNLOCKED -->
+        <StackPanel x:Name="UnlockedPanel" Spacing="10" IsVisible="False">
+          <Border CornerRadius="10" Padding="14" Background="#141A26" BorderBrush="#243044" BorderThickness="1">
+            <StackPanel Spacing="6">
+              <TextBlock Foreground="#9FB4D8" FontSize="11.5" Text="PROTECTED FOLDER" />
+              <TextBlock x:Name="FolderStatus" Foreground="#E7ECF5" FontSize="12.5" TextWrapping="Wrap" Text="—" />
+            </StackPanel>
+          </Border>
+          <Button x:Name="BtnLockFolder" Classes="primary" Content="Lock a folder…" Click="OnLockFolder" />
+          <Button x:Name="BtnOpenFolder" Content="Open folder" Click="OnOpenFolder" IsVisible="False" />
+          <Button x:Name="BtnForgetFolder" Content="Stop protecting this folder" Click="OnForgetFolder" IsVisible="False" />
+          <Button Content="Lock vault now" Click="OnLockNow" />
+          <Button Content="Run security self-test" Click="OnSelfTest" />
+          <TextBlock x:Name="UnlockedInfo" Classes="subtle" Text="" TextWrapping="Wrap" Margin="2,4,2,0" />
+        </StackPanel>
+
+      </Grid>
+    </Border>
+
+    <!-- ===== Footer ===== -->
+    <TextBlock Grid.Row="2" Classes="footer" Margin="4,16,4,0"
+               Text="AES-256-GCM with PBKDF2 (swap to Argon2id for production). Anti-reverse-engineering and anti-copy on a general-purpose OS are speed bumps, not guarantees — see the README." />
+
+  </Grid>
+</Window>

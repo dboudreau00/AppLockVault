@@ -1,0 +1,98 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AppLockVault.App"
+             RequestedThemeVariant="Dark">
+
+  <Application.Styles>
+    <FluentTheme />
+
+    <!-- ============ Cards ============ -->
+    <Style Selector="Border.card">
+      <Setter Property="Background" Value="#14161E" />
+      <Setter Property="BorderBrush" Value="#242835" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="16" />
+      <Setter Property="Padding" Value="22" />
+    </Style>
+
+    <!-- ============ Typography ============ -->
+    <Style Selector="TextBlock.h1">
+      <Setter Property="FontSize" Value="23" />
+      <Setter Property="FontWeight" Value="Bold" />
+      <Setter Property="Foreground" Value="#F4F5F8" />
+    </Style>
+    <Style Selector="TextBlock.subtle">
+      <Setter Property="FontSize" Value="12.5" />
+      <Setter Property="Foreground" Value="#888EA0" />
+    </Style>
+    <Style Selector="TextBlock.label">
+      <Setter Property="FontSize" Value="12.5" />
+      <Setter Property="Foreground" Value="#B7BCCA" />
+    </Style>
+    <Style Selector="TextBlock.error">
+      <Setter Property="FontSize" Value="12.5" />
+      <Setter Property="Foreground" Value="#FF6B6B" />
+      <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+    <Style Selector="TextBlock.footer">
+      <Setter Property="FontSize" Value="11" />
+      <Setter Property="Foreground" Value="#5B606F" />
+      <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <!-- ============ Inputs ============ -->
+    <Style Selector="TextBox">
+      <Setter Property="Background" Value="#1B1F29" />
+      <Setter Property="Foreground" Value="#ECEDF1" />
+      <Setter Property="CaretBrush" Value="#8B6DFF" />
+      <Setter Property="CornerRadius" Value="10" />
+      <Setter Property="BorderBrush" Value="#313747" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="Padding" Value="12,10" />
+      <Setter Property="FontSize" Value="13.5" />
+      <Setter Property="MinHeight" Value="0" />
+    </Style>
+    <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+      <Setter Property="BorderBrush" Value="#3B4254" />
+    </Style>
+    <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+      <Setter Property="BorderBrush" Value="#7C5CFC" />
+    </Style>
+
+    <!-- ============ Buttons (base / secondary) ============ -->
+    <Style Selector="Button">
+      <Setter Property="Background" Value="#232734" />
+      <Setter Property="Foreground" Value="#ECEDF1" />
+      <Setter Property="BorderBrush" Value="#313747" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="10" />
+      <Setter Property="Padding" Value="14,11" />
+      <Setter Property="FontSize" Value="13.5" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="HorizontalContentAlignment" Value="Center" />
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#2B3040" />
+      <Setter Property="BorderBrush" Value="#3B4254" />
+    </Style>
+    <Style Selector="Button:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#1F232E" />
+    </Style>
+
+    <!-- ============ Primary button ============ -->
+    <Style Selector="Button.primary">
+      <Setter Property="Background" Value="#7C5CFC" />
+      <Setter Property="Foreground" Value="#FFFFFF" />
+      <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    <Style Selector="Button.primary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#8B6DFF" />
+    </Style>
+    <Style Selector="Button.primary:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#6A4CE8" />
+    </Style>
+  </Application.Styles>
+
+</Application>
